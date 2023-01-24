@@ -1,4 +1,4 @@
 # DjangoMenuApp
 
 start:
-- python -m pip -f requirements.txt
+- python -m pip install -r requirements.txt
