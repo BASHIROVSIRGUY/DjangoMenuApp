@@ -1,0 +1,48 @@
+{% extends 'menuApp/index.html' %}
+{% block title %}
+    {% if third_level_item  %}
+        <title>{{ third_level_item.title }}</title>
+    {% elif second_level_item %}
+        <title>{{ second_level_item.title }}</title>
+    {% else %}
+        <title>{{ first_level_item.title }}</title>
+    {% endif %}
+{% endblock title %}
+
+{% block navigation %}
+    <ol>
+    {% for itemlvl1 in menu %}
+        <li>
+            {% include "menuApp/href_menu.html" with item=itemlvl1 selected_item=first_level_item %}
+            {% if itemlvl1.pk == first_level_item.pk %}
+                <ol>
+                {% for itemlvl2 in itemlvl1.second_lvl.all %}
+                    <li>
+                        {% include "menuApp/href_menu.html" with item=itemlvl2 selected_item=second_level_item %}
+                        {% if itemlvl2.pk == second_level_item.pk %}
+                            <ol>
+                            {% for itemlvl3 in itemlvl2.third_lvl.all %}
+                                <li>
+                                    {% include "menuApp/href_menu.html" with item=itemlvl3 selected_item=third_level_item %}
+                                </li>
+                            {% endfor %}
+                            </ol>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+                </ol>
+            {% endif %}
+        </li>
+    {% endfor %}
+    </ol>
+{% endblock navigation %}
+
+{% block content %}
+    {% if third_level_item  %}
+        <p>{{ third_level_item.text }}</p>
+    {% elif second_level_item %}
+        <p>{{ second_level_item.text }}</p>
+    {% else %}
+        <p>{{ first_level_item.text }}</p>
+    {% endif %}
+{% endblock content %}

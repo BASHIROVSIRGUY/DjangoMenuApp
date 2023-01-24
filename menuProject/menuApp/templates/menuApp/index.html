@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+        {% block title %}
+             <title> Стартовая страница </title>
+        {% endblock title %}
+</head>
+<body>
+{% block navigation %}
+    <ol>
+    {% for item in menu %}
+        <li>
+            <a href="{{ item.get_absolute_url }}"> {{item.title}} </a>
+        </li>
+    {% endfor %}
+    </ol>
+{% endblock navigation %}
+
+{% block content %}
+{% endblock content %}
+
+<h1> {{ first_slug }} </h1>
+<h2> {{ second_slug }} </h2>
+<h3> {{ third_slug }} </h3>
+</body>
+</html>

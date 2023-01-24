@@ -1,0 +1,5 @@
+{% if item.pk == selected_item.pk  %}
+    <b> {{ item.title }} </b>
+{% else %}
+    <a href="{{ item.get_absolute_url }}"> {{ item.title }} </a>
+{% endif %}
